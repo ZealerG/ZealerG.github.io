@@ -28,7 +28,7 @@
             width: 998px;
             height: 796px;
             margin: 0 auto;
-            background: url('./img3.jpg') no-repeat center center;
+            background: url('./img.jpg') no-repeat center center;
         }
     		body{
     			background-color: #f5f6f8;
@@ -177,10 +177,10 @@
     	<div class="box1">
     		<span>我的 请假申请</span><br>
     		<ul>
-    			<li class="clear"><span>开始时间：</span>10-01 09:00</li>
-    			<li class="clear"><span>结束时间：</span>10-01 22:00</li>
+    			<li class="clear"><span>开始时间：</span><p id="start"></p></li>
+    			<li class="clear"><span>结束时间：</span><p id="end"></p></li>
     			<li class="clear"><span>审批流程：</span>共1步 <a style="color: #268bd9" href="#">查看></a></li>
-    			<li class="clear"><span>紧急联系人：</span>1359975108</li>
+    			<li class="clear"><span>紧急联系人：</span>13599775108</li>
     			<li class="clear"><span>请假原因：</span>眼镜坏了，出校配个眼镜</li>
     			<li class="clear"><br></li>
     			<li class="clear"><span>发起位置：</span><a style="color: #268bd9" href="#">中国福建省厦门市集美区集美大道668号</a></li>
@@ -191,14 +191,41 @@
     		<div class="box2 clear">
     			<span>审批状态</span>
     			<ul>
-    				<li class="clear"><span id="one"></span>郭桢亮 - 发起申请<div class="right">10-01 08:00</div></li>
-    				<li><span id="two"></span>一级：[辅导员]许落汀 - 审批<div id="tg">通过</div><div class="right">10-01 08:30</div></li>
+    				<li class="clear"><span id="one"></span>郭桢亮 - 发起申请<div class="right"></span><p id="startSh"></p></div></li>
+    				<li><span id="two"></span>一级：[辅导员]许落汀 - 审批<div id="tg">通过</div><div class="right"></span><p id="endSh"></p></div></li>
     			</ul>
     			<input class="text" type="text" name="suggest" value="审批意见：无" readonly="readonly" />
     	</div>
         <a class="text1" href="#">去销假</a>
         <a class="text3" href="#">申请续假</a>
         <a class="text2" href="#">转发</a>
-
+		<script> 
+			const query = new URLSearchParams(location.search)
+			today=new Date();
+			mon = today.getMonth()+1;
+			day = today.getDate();
+			sec = today.getSeconds();
+			hr = today.getHours();
+			min = today.getMinutes();
+			if (mon <= 9) mon = "0" + mon;
+			if (day <= 9) day = "0" + day;
+			if ((hr <= 12)&&(hr>=8)) {
+				hourStart=8;
+				hourEnd=14;
+			}
+			else if((hr>12)&&(hr<=22)){
+				hourStart=12;
+				hourEnd=22;
+			}
+			else{
+				hourStart=22;
+				hourEnd=6
+			}
+			document.getElementById("start").innerHTML=mon+'-'+day+' '+hourStart+":00";
+			document.getElementById("end").innerHTML=mon+'-'+day+' '+hourEnd+":30";
+			document.getElementById("startSh").innerHTML=mon+'-'+(day-1)+" 16:34";
+			document.getElementById("endSh").innerHTML=mon+'-'+(day-1)+" 19:15";
+			</script> 
+	<noscript>抱歉，你的浏览器不支持 JavaScript!</noscript>
     </body>
     </html>
